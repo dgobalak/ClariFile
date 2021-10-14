@@ -1,0 +1,3 @@
+
+class WikiSummarizer:
+    pass
