@@ -10,7 +10,7 @@
 
 <!-- PROJECT LOGO -->
 <p align="center">
-  <a href="https://github.com/dgobalak/NBA2KPredictions">
+  <a href="https://github.com/dgobalak/DocSurfer">
     <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
   </a>
 
@@ -19,7 +19,7 @@
   <p align="center">
     Extend your knowledge about a piece of media.
     <br />
-    <a href="https://github.com/dgobalak/DocSurfere"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/dgobalak/DocSurfer"><strong>Explore the docs »</strong></a>
     <br>
     <!-- <a href="https://github.com/github_username/repo_name">View Demo</a>
     · -->
@@ -131,8 +131,6 @@ Contributions are what make the open source community such an amazing place to b
 ## License
 
 Distributed under the Apache 2.0 License . See `LICENSE` for more information.
-
-<br>
 
 <!-- CONTACT -->
 ## Contact
