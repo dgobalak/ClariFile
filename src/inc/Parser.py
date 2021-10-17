@@ -10,13 +10,13 @@ class Parser:
         self.prepped_text = self._prep_text()
 
     def get_text(self):
-        assert self.text != None
         return self.prepped_text if self.prepped_text else self._prep_text(self.text)
 
     def get_ftype(self):
         _, fext = os.path.splitext(self.path)
         ftypes = self.get_supported_ftypes()
-        assert fext in ftypes.keys()
+        if fext not in ftypes.keys():
+            raise KeyError("Unsupported file type") 
         return ftypes[fext]
 
     def get_supported_ftypes(self):
