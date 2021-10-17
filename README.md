@@ -11,7 +11,7 @@
 <!-- PROJECT LOGO -->
 <p align="center">
   <a href="https://github.com/dgobalak/DocSurfer">
-    <!-- <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
+    <img src="src/static/img/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">DocSurfer</h3>
@@ -75,11 +75,11 @@ To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
-* Verify if python is installed
+* Verify if python (Version >= 3.8) is installed. Previous versions may also work.
   ```sh
   python --version
   ```
-  * If not, go to https://www.python.org/downloads
+  * If not, go to https://www.python.org/downloads.
 <br><br>
 
 * Verify if pip is installed
@@ -135,15 +135,14 @@ Distributed under the Apache 2.0 License . See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Daniel Gobalakrishnan - dgobalak@uwaterloo.ca
-
-Project Link: [https://github.com/dgobalak/DocSurfer](https://github.com/dgobalak/DocSurfer)
+* Daniel Gobalakrishnan - dgobalak@uwaterloo.ca
+* Project Link: [https://github.com/dgobalak/DocSurfer](https://github.com/dgobalak/DocSurfer)
 
 
 
 <!-- ACKNOWLEDGEMENTS -->
-<!-- ## Acknowledgements -->
-
+## Acknowledgements
+* <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
