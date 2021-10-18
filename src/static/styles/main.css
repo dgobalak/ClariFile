@@ -1,0 +1,130 @@
+body {
+    font-family: sans-serif;
+    background-color: #eeeeee;
+}
+
+.file-upload {
+    background-color: #ffffff;
+    width: 1000px;
+    /* height: 2000px; */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+/* BUTTON */
+
+.file-upload-btn {
+    width: 100%;
+    margin: 0;
+    color: #fff;
+    background: #1a96dd;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    /* border-bottom: 4px solid rgb(0, 248, 227); */
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.file-upload-btn:hover {
+    background: #116697;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.file-upload-btn:active {
+    border: 0;
+    transition: all .2s ease;
+}
+
+
+/* PLACEHOLDER */
+
+.file-upload-preview {
+    display: none;
+    text-align: center;
+    height: 100%;
+}
+
+.file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-upload-placeholder {
+    margin-top: 20px;
+    border: 4px dashed #382c52;
+    position: relative;
+}
+
+.image-dropping,
+.file-upload-placeholder:hover {
+    background-color: #d4f1f9;
+    border: 4px dashed #382c52;
+}
+
+.drag-text {
+    text-align: center;
+}
+
+.drag-text h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #382c52;
+    padding: 60px 0;
+}
+
+
+/* PREVIEW */
+
+.file-upload-image {
+    max-height: 1200px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+
+/* REMOVE */
+
+.file-upload-remove {
+    padding: 0 15px 15px 15px;
+    color: #222;
+}
+
+.remove-image {
+    width: 200px;
+    margin: 0;
+    color: #fff;
+    background: #382c52;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    /* border-bottom: 4px solid #b02818; */
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.remove-image:hover {
+    background: #2a213d;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.remove-image:active {
+    border: 0;
+    transition: all .2s ease;
+}
