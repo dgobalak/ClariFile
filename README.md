@@ -97,6 +97,10 @@ To get a local copy up and running, follow these simple steps.
    ```sh
    pip install -r requirements.txt
    ```
+3. Start the Flask app
+   ```sh
+   python run.py
+   ```
 
 
 <!-- USAGE EXAMPLES
