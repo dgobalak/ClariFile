@@ -3,6 +3,7 @@ from urllib.error import HTTPError
 import urllib.request
 import bs4 as bs
 
+
 class WikiSummarizer():
     def __init__(self, keywords, max_sent_len=30, summary_len=8, lang='english'):
         self.keywords = keywords

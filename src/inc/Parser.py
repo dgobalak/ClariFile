@@ -2,6 +2,7 @@ import os
 import textract
 import moviepy.editor as mpe
 
+
 class Parser:
     def __init__(self, path):
         self.path = path
