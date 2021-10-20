@@ -87,17 +87,25 @@ To get a local copy up and running, follow these simple steps.
   pip --version
   ```  
 
-### Installation
+### Installation and Setup
 
 1. Clone the repo
    ```sh
    git clone https://github.com/dgobalak/DocSurfer.git
    ```
-2. Install python packages
+2. Create a virtual environment
+   ```sh
+   python -m venv venv
+   ```
+3. Activate the virtual environment
+   ```sh
+   venv\scripts\activate
+   ```
+4. Install dependencies
    ```sh
    pip install -r requirements.txt
    ```
-3. Start the Flask app
+5. Start the Flask app
    ```sh
    python run.py
    ```
