@@ -5,11 +5,12 @@ import bs4 as bs
 
 
 class WikiSummarizer():
-    def __init__(self, keywords, max_sent_len=30, summary_len=8, lang='english'):
+    def __init__(self, keywords, max_sent_len=30, summary_len=8, lang='english', min_summary_char_len = 100):
         self.keywords = keywords
         self.max_sent_len = max_sent_len
         self.summary_len = summary_len
         self.lang = lang
+        self.min_summary_char_len = min_summary_char_len
 
         self.articles = {}
         self.summaries = {}
@@ -46,5 +47,6 @@ class WikiSummarizer():
         for kw in self.keywords:
             summary = TextSummary(articles[kw], self.max_sent_len, self.summary_len, self.lang)
             self.summaries[kw] = summary.get_summary()
-        
+        summaries = {keyword: summary for keyword, summary in self.summaries.items() if len(summary) >= self.min_summary_char_len}
+        self.summaries = summaries
         return self.summaries
