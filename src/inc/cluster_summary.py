@@ -11,6 +11,8 @@ class ClusterSummary:
         self.text = self._preprocessing(text)
         self.min_word_freq = min_word_freq
         self.dist_metric = self._set_distance_metric(dist_metric)
+
+        # TODO: Deal with situation when n_clusters exceeds number of sentences
         self.n_clusters = n_clusters
         self.lang = lang
 
@@ -88,6 +90,8 @@ class ClusterSummary:
             plus=0
             for j in sentence.split():
                 plus += model.wv[j]
+
+            # TODO: Deal with situation when len(sentence.split()) == 0
             plus = plus/len(sentence.split())
             sent_vector.append(plus)
             
