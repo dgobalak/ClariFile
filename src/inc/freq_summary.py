@@ -4,7 +4,7 @@ import re
 import heapq
 
 
-class TextSummary:
+class MostFrequentSummary:
     def __init__(self, text, max_sent_len=30, summary_len=8, lang="english"):
         self.text = self._preprocess(text)
         self.max_sent_len = max_sent_len
