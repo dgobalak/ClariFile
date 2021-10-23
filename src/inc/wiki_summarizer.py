@@ -1,4 +1,4 @@
-from src.inc.text_summary import TextSummary
+from src.inc.freq_summary import MostFrequentSummary
 from urllib.error import HTTPError
 import urllib.request
 import bs4 as bs
@@ -45,7 +45,7 @@ class WikiSummarizer():
     def _create_summaries(self):
         articles = self.get_articles()
         for kw in self.keywords:
-            summary = TextSummary(articles[kw], self.max_sent_len, self.summary_len, self.lang)
+            summary = MostFrequentSummary(articles[kw], self.max_sent_len, self.summary_len, self.lang)
             self.summaries[kw] = summary.get_summary()
         summaries = {keyword: summary for keyword, summary in self.summaries.items() if len(summary) >= self.min_summary_char_len}
         self.summaries = summaries
