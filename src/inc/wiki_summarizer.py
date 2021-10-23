@@ -6,7 +6,7 @@ import bs4 as bs
 
 
 class WikiSummarizer():
-    def __init__(self, keywords, summarizer="cluster", min_word_freq=1, dist_metric="euclidean", n_clusters=8, max_sent_len=30, summary_len=8, lang='english', min_summary_char_len=100):
+    def __init__(self, keywords, summarizer="freq", min_word_freq=1, dist_metric="cosine", n_clusters=8, max_sent_len=30, summary_len=8, lang='english', min_summary_char_len=100):
         self.keywords = keywords
         self.lang = lang
         self.summarizer = summarizer
