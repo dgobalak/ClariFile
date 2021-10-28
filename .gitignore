@@ -128,5 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+
 samples/sample_vid.*
-datasets/
+datasets/Image Captioning/Images
+datasets/Image Captioning/*.txt
+datasets/Word Vectors
+Translation/
