@@ -44,8 +44,9 @@ class WikiSummarizer():
         return articles
 
     def _scrape_text(self, keyword):
+        kw = "_".join(keyword.split())
         article = urllib.request.urlopen(
-            f'https://en.wikipedia.org/wiki/{keyword}').read()
+            f'https://en.wikipedia.org/wiki/{kw}').read()
         parsed_article = bs.BeautifulSoup(article, 'lxml')
         paragraphs = parsed_article.find_all('p')
 
