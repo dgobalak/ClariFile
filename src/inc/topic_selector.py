@@ -1,3 +1,4 @@
+from src.inc.lang_detection_utils import *
 from nltk import pos_tag, ne_chunk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -8,10 +9,10 @@ import itertools
 
 
 class TopicSelector:
-    def __init__(self, text, min_freq=3, lang="english"):
+    def __init__(self, text, min_freq=3, lang="auto"):
         self.text = text
         self.min_freq = min_freq
-        self.lang = lang
+        self.lang = detect_lang(self.text) if lang == 'auto' else lang
 
         self.named_entities = None
         self.common_words = None
