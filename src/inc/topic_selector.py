@@ -9,9 +9,10 @@ import itertools
 
 
 class TopicSelector:
-    def __init__(self, text, min_freq=3, lang="auto"):
+    def __init__(self, text, min_freq=3, lang="auto", n_common_words=20):
         self.text = text
         self.min_freq = min_freq
+        self.n_common_words = n_common_words
         self.lang = detect_lang(self.text) if lang == 'auto' else lang
 
         self.named_entities = None
@@ -33,9 +34,9 @@ class TopicSelector:
 
     def _set_keywords(self):
         ne = set(self.get_named_entities())
-        cw = set(self.get_common_words())
-        pn = set(self.get_prop_nouns())
-        self.keywords = set(itertools.chain(ne, cw, pn))
+        # cw = set(self.get_common_words())
+        # pn = set(self.get_prop_nouns())
+        self.keywords = set(ne)
         return self.keywords
 
     def _get_stopwords(self):
@@ -77,11 +78,14 @@ class TopicSelector:
         self.named_entities = named_entities
         return self.named_entities
 
+    # No longer used in keyword extraction for summarization
+    # Will be used for definitions
     def _set_common_words(self):
         freq_dist = FreqDist(self._lemmatize_words(self.text))
-        self.common_words = [x[0] for x in freq_dist.most_common(20) if x[1] >= self.min_freq]
+        self.common_words = [x[0] for x in freq_dist.most_common(self.n_common_words) if x[1] >= self.min_freq]
         return self.common_words
 
+    # No longer used in keyword extraction
     def _set_prop_nouns(self):
         tagged_words = self._tag_words(self.text)
         self.prop_nouns = [x[0] for x in tagged_words if x[1] == "NNP"]
