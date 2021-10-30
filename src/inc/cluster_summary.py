@@ -12,7 +12,6 @@ class ClusterSummary:
         self.min_word_freq = min_word_freq
         self.dist_metric = self._set_distance_metric(dist_metric)
 
-        # TODO: Deal with situation when n_clusters exceeds number of sentences
         self.n_clusters = n_clusters
         self.lang = lang
 
@@ -28,8 +27,7 @@ class ClusterSummary:
 
         w2v_model = self._get_w2v_model(all_words)
         sent_vector = self._vectorize_sentences(cleaned_sentences, w2v_model)
-
-        kclusterer = self._create_clusterer()
+        kclusterer = self._create_clusterer(len(sent_vector))
         clusters = self._get_sent_clusters(kclusterer, sent_vector)
         centroids = self._get_cluster_centroids(kclusterer)
         
@@ -97,7 +95,9 @@ class ClusterSummary:
             
         return sent_vector
 
-    def _create_clusterer(self):
+    def _create_clusterer(self, num_sentences):
+        # Limit n_clusters so it doesn't exceed the number of sentences in the text
+        self.n_clusters = self.n_clusters if self.n_clusters <= num_sentences else num_sentences
         return KMeansClusterer(num_means=self.n_clusters, distance=self.dist_metric)
 
     def _get_sent_clusters(self, kclusterer, sentence_vectors):
