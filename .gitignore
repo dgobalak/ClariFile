@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 
 samples/sample_vid.*
+datasets/Image Captioning
+datasets/Translation/clean-language-codes.csv
+datasets/Translation/language-codes.csv
