@@ -35,12 +35,15 @@ class WikiSummarizer():
 
     def _collect_articles(self, keywords):
         articles = {}
+        new_keywords = []
         for kw in keywords:
             try:
                 articles[kw] = self._scrape_text(kw)
+                new_keywords.append(kw)
             except HTTPError:
                 continue
         self.articles = articles
+        self.keywords = new_keywords
         return articles
 
     def _scrape_text(self, keyword):
