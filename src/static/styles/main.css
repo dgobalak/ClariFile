@@ -128,3 +128,30 @@ body {
     border: 0;
     transition: all .2s ease;
 }
+
+.submit-image {
+    width: 200px;
+    margin: 0;
+    color: #fff;
+    background: #382c52;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    /* border-bottom: 4px solid #b02818; */
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.submit-image:hover {
+    background: #2a213d;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.submit-image:active {
+    border: 0;
+    transition: all .2s ease;
+}
