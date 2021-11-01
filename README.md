@@ -26,19 +26,22 @@
     <a href="https://github.com/dgobalak/DocSurfer/issues">Report Bug</a>
     ·
     <a href="https://github.com/dgobalak/DocSurfer/issues">Request Feature</a>
-  </p>
+</p>
 </p>
 
 
 
 <!-- TABLE OF CONTENTS -->
-<summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+<summary>
+<h2 style="display: inline-block">Table of Contents</h2></summary>
+
 <ol>
 <li>
     <a href="#about-the-project">About The Project</a>
     <ul>
+	<li><a href="#overview">Overview</a></li>
     <li><a href="#built-with">Built With</a></li>
-    </ul>
+</ul>
 </li>
 <li>
     <a href="#getting-started">Getting Started</a>
@@ -58,6 +61,32 @@
 ## About The Project
 <!-- 
 [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+
+### Overview
+
+DocSurfer extracts the names of people, places and things from a file and displays a Wikipedia summary describing each name.
+
+DocSurfer uses the following steps:
+
+1. Prompts you for a file (allowable file formats: .wav, .mp3, .mp4, .pdf, .png).
+
+2. Depending on the file type:
+
+    * Extracts text from the pdf or image.
+    * Converts audio/video to text.
+
+3. Searches text for [proper nouns](https://www.merriam-webster.com/dictionary/proper%20noun).
+
+4. Finds the Wikipedia article for each proper noun.
+
+5. Displays a summary of the Wikipedia article in the language of your choice.
+
+We are working on the following enhancements. Stay tuned!
+
+- Using machine learning, create a caption for images with no text, and use the caption as the text.
+- Use other encyclopedias/websites in addition to Wikipedia.
+- Use Term frequency-Inverse document frequency (TF-IDF) to construct a summary from sentences containing the most important words in the article.
+
 
 ### Built With
 
@@ -80,12 +109,12 @@ To get a local copy up and running, follow these simple steps.
   python --version
   ```
   * If not, go to https://www.python.org/downloads.
-<br><br>
+  <br><br>
 
 * Verify if pip is installed
   ```sh
   pip --version
-  ```  
+  ```
 
 ### Installation and Setup
 
