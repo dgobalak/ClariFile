@@ -26,19 +26,22 @@
     <a href="https://github.com/dgobalak/DocSurfer/issues">Report Bug</a>
     ·
     <a href="https://github.com/dgobalak/DocSurfer/issues">Request Feature</a>
-  </p>
+</p>
 </p>
 
 
 
 <!-- TABLE OF CONTENTS -->
-<summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+<summary>
+<h2 style="display: inline-block">Table of Contents</h2></summary>
+
 <ol>
 <li>
     <a href="#about-the-project">About The Project</a>
     <ul>
+	<li><a href="#overview">Overview</a></li>
     <li><a href="#built-with">Built With</a></li>
-    </ul>
+</ul>
 </li>
 <li>
     <a href="#getting-started">Getting Started</a>
@@ -72,7 +75,7 @@ DocSurfer uses the following steps:
     * Extracts text from the pdf or image.
     * Converts audio/video to text.
 
-3. Searches text for proper nouns.
+3. Searches text for [proper nouns](https://www.merriam-webster.com/dictionary/proper%20noun).
 
 4. Finds the Wikipedia article for each proper noun.
 
