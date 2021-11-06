@@ -8,14 +8,13 @@ import bs4 as bs
 
 
 class WikiSummarizer():
-    def __init__(self, keywords, summarizer="freq", min_word_freq=1, dist_metric="cosine", n_clusters=8, max_sent_len=30, summary_len=8, lang='auto', min_summary_char_len=100, target=None):
+    def __init__(self, keywords, summarizer="freq", dist_metric="cosine", n_clusters=8, max_sent_len=30, summary_len=8, lang='auto', min_summary_char_len=100, target=None):
         self.keywords = keywords
         self.lang = detect_lang(" ".join(keywords)) if lang == 'auto' else lang
         self.summarizer = summarizer
         self.target = target
 
         # Cluster summary config
-        self.min_word_freq = min_word_freq
         self.dist_metric = dist_metric
         self.n_clusters = n_clusters
 
@@ -61,7 +60,7 @@ class WikiSummarizer():
 
     def _get_summarizer(self, text):
         if self.summarizer == "cluster":
-            return ClusterSummary(text, self.min_word_freq, self.dist_metric, self.n_clusters, self.lang)
+            return ClusterSummary(text, self.dist_metric, self.n_clusters, self.lang)
         elif self.summarizer == "freq":
             return MostFrequentSummary(text, self.max_sent_len, self.summary_len, self.lang)
 
