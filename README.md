@@ -17,7 +17,7 @@
   <h3 align="center">ClariFile</h3>
 
   <p align="center">
-    Built to clarify the content of media files.
+    Built to provide insight into media content.
     <br />
     <a href="https://github.com/dgobalak/ClariFile"><strong>Explore the docs »</strong></a>
     <br>
