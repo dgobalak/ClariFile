@@ -1,4 +1,4 @@
-# DocSurfer
+# ClariFile
 
 <!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -10,22 +10,22 @@
 
 <!-- PROJECT LOGO -->
 <p align="center">
-  <a href="https://github.com/dgobalak/DocSurfer">
+  <a href="https://github.com/dgobalak/ClariFile">
     <img src="src/static/img/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">DocSurfer</h3>
+  <h3 align="center">ClariFile</h3>
 
   <p align="center">
-    Extend your knowledge about a piece of media.
+    Built to clarify the content of media files.
     <br />
-    <a href="https://github.com/dgobalak/DocSurfer"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/dgobalak/ClariFile"><strong>Explore the docs »</strong></a>
     <br>
     <!-- <a href="https://github.com/github_username/repo_name">View Demo</a>
     · -->
-    <a href="https://github.com/dgobalak/DocSurfer/issues">Report Bug</a>
+    <a href="https://github.com/dgobalak/ClariFile/issues">Report Bug</a>
     ·
-    <a href="https://github.com/dgobalak/DocSurfer/issues">Request Feature</a>
+    <a href="https://github.com/dgobalak/ClariFile/issues">Request Feature</a>
 </p>
 </p>
 
@@ -64,29 +64,12 @@
 
 ### Overview
 
-DocSurfer extracts the names of people, places and things from a file and displays a Wikipedia summary describing each name.
+ClariFile is a tool that takes a media file (.wav, .mp3, .mp4, .pdf, or .png) and provides further information regarding the file's content. We use machine learning, natural language processing, and web-scraping to provide succinct, translated summaries of Wikipedia articles relevant to the file. We've implemented NLP algorithms to extract named entitites and summarize text, so users can quickly learn more about major topics. We use an image captioning ML model to caption images that don't have any text and we use
+the textract library for every other file type. All of these features (and more!) are integrated into an easy-to-use Flask website.
+<br>
+<br>
 
-DocSurfer uses the following steps:
-
-1. Prompts you for a file (allowable file formats: .wav, .mp3, .mp4, .pdf, .png).
-
-2. Depending on the file type:
-
-    * Extracts text from the pdf or image.
-    * Converts audio/video to text.
-
-3. Searches text for [proper nouns](https://www.merriam-webster.com/dictionary/proper%20noun).
-
-4. Finds the Wikipedia article for each proper noun.
-
-5. Displays a summary of the Wikipedia article in the language of your choice.
-
-We are working on the following enhancements. Stay tuned!
-
-- Using machine learning, create a caption for images with no text, and use the caption as the text.
-- Use other encyclopedias/websites in addition to Wikipedia.
-- Use Term frequency-Inverse document frequency (TF-IDF) to construct a summary from sentences containing the most important words in the article.
-
+<div style="text-align:center"><img src="./src/static/img/flowchart.png" ></div>
 
 ### Built With
 
@@ -95,7 +78,6 @@ We are working on the following enhancements. Stay tuned!
 * NLTK
 * Beautiful Soup
 * Flask
-* Jupyter Notebook
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -120,7 +102,7 @@ To get a local copy up and running, follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/dgobalak/DocSurfer.git
+   git clone https://github.com/dgobalak/ClariFile.git
    ```
 2. Create a virtual environment
    ```sh
@@ -157,17 +139,24 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 
 <!-- CONTRIBUTING -->
-<!-- ## Contributing
+## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
- -->
-
+2. Create your Feature Branch 
+```sh
+   git checkout -b AmazingFeature
+```
+3. Commit your Changes 
+```sh
+   git commit -m 'Add some AmazingFeature'
+```
+4. Push to the Branch 
+```sh
+   git push origin AmazingFeature
+```
+5. Open a Pull Request and wait for it to be reviewed.
 
 ## License
 
@@ -177,7 +166,7 @@ Distributed under the Apache 2.0 License . See `LICENSE` for more information.
 ## Contact
 
 * Daniel Gobalakrishnan - dgobalak@uwaterloo.ca
-* Project Link: [https://github.com/dgobalak/DocSurfer](https://github.com/dgobalak/DocSurfer)
+* Project Link: [https://github.com/dgobalak/ClariFile](https://github.com/dgobalak/ClariFile)
 
 
 
