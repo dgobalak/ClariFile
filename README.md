@@ -69,7 +69,9 @@ the textract library for every other file type. All of these features (and more!
 <br>
 <br>
 
-<div style="text-align:center"><img src="./src/static/img/flowchart.png" ></div>
+<p align="center">
+   <img src="./src/static/img/flowchart.png" alt="Algorithm Flowchart">
+</p>
 
 ### Built With
 
