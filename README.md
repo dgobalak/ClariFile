@@ -1,4 +1,4 @@
-# ClariFile
+# File Insights
 
 <!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -10,22 +10,22 @@
 
 <!-- PROJECT LOGO -->
 <p align="center">
-  <a href="https://github.com/dgobalak/ClariFile">
+  <a href="https://github.com/dgobalak/File-Insights">
     <img src="src/static/img/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">ClariFile</h3>
+  <h3 align="center">File Insights</h3>
 
   <p align="center">
     Built to provide insight into media content.
     <br />
-    <a href="https://github.com/dgobalak/ClariFile"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/dgobalak/File-Insights"><strong>Explore the docs »</strong></a>
     <br>
     <!-- <a href="https://github.com/github_username/repo_name">View Demo</a>
     · -->
-    <a href="https://github.com/dgobalak/ClariFile/issues">Report Bug</a>
+    <a href="https://github.com/dgobalak/File-Insights/issues">Report Bug</a>
     ·
-    <a href="https://github.com/dgobalak/ClariFile/issues">Request Feature</a>
+    <a href="https://github.com/dgobalak/File-Insights/issues">Request Feature</a>
 </p>
 </p>
 
@@ -65,7 +65,7 @@
 
 ### Overview
 
-ClariFile is a tool that takes a media file (.wav, .mp3, .mp4, .pdf, or .png) and provides further information regarding the file's content. We use machine learning, natural language processing, and web-scraping to provide succinct, translated summaries of Wikipedia articles relevant to the file. We've implemented NLP algorithms to extract named entitites and summarize text, so users can quickly learn more about major topics. We use an image captioning ML model to caption images that don't have any text and we use
+File Insights is a tool that takes a media file (.wav, .mp3, .mp4, .pdf, or .png) and provides further information regarding the file's content. We use machine learning, natural language processing, and web-scraping to provide succinct, translated summaries of Wikipedia articles relevant to the file. We've implemented NLP algorithms to extract named entitites and summarize text, so users can quickly learn more about major topics. We use an image captioning ML model to caption images that don't have any text and we use
 the textract library for every other file type. All of these features (and more!) are integrated into an easy-to-use Flask website.
 <br>
 <br>
@@ -105,7 +105,7 @@ To get a local copy up and running, follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/dgobalak/ClariFile.git
+   git clone https://github.com/dgobalak/File-Insights.git
    ```
 2. Create a virtual environment
    ```sh
@@ -169,7 +169,7 @@ Distributed under the Apache 2.0 License . See `LICENSE` for more information.
 ## Contact
 
 * Daniel Gobalakrishnan - dgobalak@uwaterloo.ca
-* Project Link: [https://github.com/dgobalak/ClariFile](https://github.com/dgobalak/ClariFile)
+* Project Link: [https://github.com/dgobalak/File-Insights](https://github.com/dgobalak/File-Insights)
 
 
 
