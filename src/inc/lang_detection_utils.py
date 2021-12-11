@@ -1,8 +1,9 @@
 import pandas as pd
 from googletrans import Translator as google_translator
 
-# TODO: Move the dataframe to an SQL database
-df = pd.read_csv("../datasets/Translation/google-lang-codes.csv")
+# TODO: Move the dataframe to an SQLite database
+df = pd.read_csv("datasets/Translation/google-lang-codes.csv")
+
 
 def detect_lang(text):
     return lang_code_to_name(google_translator().detect(text).lang)
@@ -18,4 +19,3 @@ def lang_code_to_name(code):
 def lang_name_to_code(name):
     code = df.loc[df['Name'] == name.lower(), 'Code'].iloc[0]
     return code
-
