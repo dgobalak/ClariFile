@@ -6,7 +6,6 @@ body {
 .file-upload {
     background-color: #ffffff;
     width: 1000px;
-    /* height: 2000px; */
     margin: 0 auto;
     padding: 20px;
 }
@@ -154,4 +153,11 @@ body {
 .submit-image:active {
     border: 0;
     transition: all .2s ease;
+}
+
+.summary-card {
+    background-color: #ffffff;
+    width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
 }

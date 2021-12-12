@@ -6,15 +6,21 @@ from .inc.files import get_summary_data
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    data = {}
+
     if request.method == 'POST':
         data = get_summary_data(app)
-        print(data)
         if data != {}:  # File saved successfully
-            return redirect(url_for('index'))
+            return render_template("summaries.html", data=data)        
         else:
-            return redirect(request.url)
+            return redirect(url_for("index"))
 
     return render_template("index.html")
+
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    return render_template("settings.html")
 
 
 @app.errorhandler(500)
