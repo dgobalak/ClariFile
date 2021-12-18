@@ -13,6 +13,10 @@ SECRET_KEY = '6cOGFyylnBYVNs012bS4gjtWfsfds3423w3eqfea3d977d588'
 # File upload settings
 UPLOAD_EXTENSIONS = ['.wav', '.mp3', '.mp4', '.png', '.pdf']
 UPLOAD_FOLDER = "temp_storage/"
+
+if not os.path.isdir(UPLOAD_FOLDER):
+    os.mkdir(UPLOAD_FOLDER)
+
 # MAX_CONTENT_LENGTH = 1024 * 1024
 
 
