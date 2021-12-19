@@ -1,6 +1,7 @@
 import os
 import textract
 import moviepy.editor as mpe
+import pdfplumber
 
 
 class Parser:
@@ -39,6 +40,13 @@ class Parser:
     def _parse_text(self):
         ftype = self.get_ftype()
         if ftype == "PDF" or ftype == "Audio":
+            all_text = ''
+            with pdfplumber.open(self.path) as pdf:
+                for pdf_page in pdf.pages:
+                    single_page_text = pdf_page.extract_text()
+                    all_text = all_text + '\n' + single_page_text
+            return str(all_text)                        
+        elif ftype == "Audio":
             return str(textract.process(self.path))
         elif ftype == "Video":
             audio = mpe.VideoFileClip(self.path).audio

@@ -1,8 +1,8 @@
 import pandas as pd
 from googletrans import Translator as google_translator
 
-# TODO: Move the dataframe to an SQLite database
-df = pd.read_csv("datasets/Translation/google-lang-codes.csv")
+# TODO: Move the dataframe to an SQLite database or AWS S3
+df = pd.read_csv("data/Translation/google-lang-codes.csv")
 
 
 def detect_lang(text):
