@@ -3,9 +3,11 @@
 {% block content %}
 
     {% for keyword, summary in data.items() %}
-    <div class="summary-card">
-        <h2>Keyword: {{keyword}}</h2>
-        <p><strong>Summary:</strong> {{summary}}</p>
+    <div class="card summary-card">
+        <div class="card-body">
+            <h4 class="card-title">Keyword: {{keyword}}</h4>
+            <p class="card-text"><strong>Summary:</strong> {{summary}}</p>
+        </div>
     </div>
     {% endfor %}
 
