@@ -38,11 +38,11 @@ def process_file(app, fname) -> dict:
         parsed_text = parser.get_text()
 
         # Extract keywords from text
-        topic_selector = TopicSelector(text=parsed_text, lang="en")
+        topic_selector = TopicSelector(text=parsed_text, lang="english")
         keywords = topic_selector.get_keywords()
 
         # Scrape wikipedia summary for each keyword
-        wiki_summarizer = WikiSummarizer(keywords=keywords, lang="en")
+        wiki_summarizer = WikiSummarizer(keywords=keywords, lang="english")
         # Dict containing keyword:summary pairs
         summaries = wiki_summarizer.get_summaries()
 

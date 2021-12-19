@@ -128,10 +128,12 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-!datasets/Translation/google-lang-codes.csv
 !notebooks/main_pipeline.ipynb
 
 samples/
-datasets/
 notebooks/
 temp_storage/
+
+data/Image Captioning/
+data/nltk_data/
+data/Translation/clean-language-codes.csv
