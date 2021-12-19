@@ -1,4 +1,5 @@
 argcomplete==1.10.3
+autopep8==1.6.0
 backcall==0.2.0
 backports.zoneinfo==0.2.1
 beautifulsoup4==4.8.2
@@ -53,6 +54,7 @@ pickleshare==0.7.5
 Pillow==8.4.0
 proglog==0.1.9
 prompt-toolkit==3.0.22
+pycodestyle==2.8.0
 pycryptodome==3.11.0
 Pygments==2.10.0
 python-dateutil==2.8.2
@@ -70,12 +72,14 @@ sortedcontainers==2.4.0
 soupsieve==2.3.1
 SpeechRecognition==3.8.1
 textract==1.6.4
+toml==0.10.2
 tornado==6.1
 tqdm==4.62.3
 traitlets==5.1.1
 tzdata==2021.5
 tzlocal==4.1
 urllib3==1.26.7
+waitress==2.0.0
 Wand==0.6.7
 wcwidth==0.2.5
 Werkzeug==2.0.2
