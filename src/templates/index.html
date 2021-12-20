@@ -1,4 +1,19 @@
 {% extends "layout.html" %} {% block content %}
+
+<div class="px-4 my-3 text-center">
+    <img class="d-block mx-auto mb-2" src="../static/img/logo.png" alt="" width="100" height="100">
+    <h1 class="display-5 fw-bold">File Insights</h1>
+    <div class="col-lg-10 mx-auto">
+        <p class="lead mb-4">
+            An open source web application that provides insight into media content
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <p><a class="btn btn-outline-primary btn-lg px-4 gap-3" href="https://github.com/dgobalak/File-Insights" target="_blank">View Code &raquo;</a></p>
+            <p><a class="btn btn-outline-dark btn-lg px-4" href="https://github.com/dgobalak/File-Insights/issues" target="_blank">Report Issue &raquo;</a></p>
+        </div>
+    </div>
+</div>
+
 <div class="file-upload">
     <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
             Add File
@@ -8,7 +23,7 @@
         <div class="file-upload-placeholder">
             <input class="file-upload-input" type='file' name='file' onchange="readURL(this);" />
             <div class="drag-text">
-                <h3>Drag and drop a file or select add File</h3>
+                <h3>Drag and drop a PDF or select add File</h3>
             </div>
         </div>
 
@@ -22,4 +37,28 @@
         </div>
     </form>
 </div>
+
+<div class="container algorithm-explanation">
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="mb-1" src="../static/img/text_extraction.png" alt="Text Extraction" width="140" height="140">
+            <h2>Text Extraction</h2>
+            <p>We extract and clean the text content of a media file using 3rd party libraries. Only PDFs are currently supported, but others are in development.</p>
+            <p><a class="btn btn-primary" href="https://github.com/dgobalak/File-Insights/blob/main/src/inc/parser.py" target="_blank">View Code &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+            <img class="mb-1" src="../static/img/keyword_identification.png" alt="Text Extraction" width="140" height="140">
+            <h2>Keyword Identification</h2>
+            <p>We identify named entities from the text using natural language processing. This is done with a chunking process that identifies parts of speech</p>
+            <p><a class="btn btn-primary" href="https://github.com/dgobalak/File-Insights/blob/main/src/inc/topic_selector.py" target="_blank">View Code &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+            <img class="mb-1" src="../static/img/wikipedia.png" alt="Text Extraction" width="140" height="140">
+            <h2>Wiki Summarization</h2>
+            <p>We scrape Wikipedia articles using a custom web scraper. The articles are then summarized using an unsupervised learning algorithm (K-Means Clustering).</p>
+            <p><a class="btn btn-primary" href="https://github.com/dgobalak/File-Insights/blob/main/src/inc/wiki_summarizer.py" target="_blank">View Code &raquo;</a></p>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
