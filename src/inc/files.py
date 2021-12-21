@@ -1,4 +1,4 @@
-from flask import flash, request
+from flask import flash, request, sessions
 from werkzeug.utils import secure_filename
 
 from .parser import Parser
@@ -8,10 +8,17 @@ from .wiki_summarizer import WikiSummarizer
 import os
 
 
-def get_summary_data(app) -> dict:
-    fname = save_file(app)
-    data = process_file(app, fname)
-    delete_file(app, fname)
+def get_summary_data(app, cookies) -> dict:
+    fname = ''
+    data = {}
+
+    try:
+        fname = save_file(app)
+        data = process_file(app, fname, cookies)
+    except Exception as e:
+        print(e)
+    finally:
+        delete_file(app, fname)
 
     return data
 
@@ -31,8 +38,18 @@ def save_file(app) -> str:
     return ''
 
 
-def process_file(app, fname) -> dict:
+def process_file(app, fname, session) -> dict:
     if fname != '':
+        lang = session.get('language', '')
+        summarizer = session.get('summarizer', '')
+        cluster_dist = session.get('cluster-distance', '')
+        summary_len = int(session.get('summary-length', -1))
+
+        lang = lang.lower() if lang != '' else 'english'
+        summarizer = summarizer.lower() if summarizer != '' else 'cluster'
+        cluster_dist = cluster_dist.lower() if cluster_dist != '' else 'cosine'
+        summary_len = summary_len if summary_len < 1 else 8
+
         # Parse text from media file
         parser = Parser(os.path.join(app.config['UPLOAD_FOLDER'], fname))
         parsed_text = parser.get_text()
@@ -42,7 +59,9 @@ def process_file(app, fname) -> dict:
         keywords = topic_selector.get_keywords()
 
         # Scrape wikipedia summary for each keyword
-        wiki_summarizer = WikiSummarizer(keywords=keywords, lang="english")
+        wiki_summarizer = WikiSummarizer(keywords=keywords, lang="english", summarizer=summarizer,
+                                         dist_metric=cluster_dist, n_clusters=summary_len, summary_len=summary_len)
+
         # Dict containing keyword:summary pairs
         summaries = wiki_summarizer.get_summaries()
 
@@ -52,11 +71,13 @@ def process_file(app, fname) -> dict:
 
 
 def delete_file(app, fname) -> None:
-    if fname != '':
-        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], fname))
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], fname)
+    if os.path.exists(file_path):
+        os.remove(file_path)
 
 
 # Check if file type is supported
 def allowed_file(filename, app) -> bool:
     return '.' in filename and \
-        filename[len(filename)-1-filename[::-1].index("."):] in app.config['UPLOAD_EXTENSIONS']
+        filename[len(filename)-1-filename[::-1].index(".")
+                     :] in app.config['UPLOAD_EXTENSIONS']

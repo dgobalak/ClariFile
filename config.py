@@ -1,14 +1,13 @@
 import os
+import datetime
 
 # Grabs the folder where the script runs.
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# Enable debug mode. Set to False if converting to GUI
 DEBUG = False
 
-# Secret key for session management. You can generate random strings here:
-# https://randomkeygen.com/
-SECRET_KEY = '6cOGFyylnBYVNs012bS4gjtWfsfds3423w3eqfea3d977d588'
+SECRET_KEY = os.urandom(24).hex()
+PERMANENT_SESSION_LIFETIME = datetime.timedelta(days=365)
 
 # File upload settings
 UPLOAD_EXTENSIONS = ['.wav', '.mp3', '.mp4', '.png', '.pdf']
@@ -18,7 +17,6 @@ if not os.path.isdir(UPLOAD_FOLDER):
     os.mkdir(UPLOAD_FOLDER)
 
 # MAX_CONTENT_LENGTH = 1024 * 1024
-
 
 # Connect to the database
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
