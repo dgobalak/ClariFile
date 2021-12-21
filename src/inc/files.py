@@ -46,7 +46,7 @@ def process_file(app, fname, session) -> dict:
         summary_len = int(session.get('summary-length', -1))
 
         lang = lang.lower() if lang != '' else 'english'
-        summarizer = summarizer.lower() if summarizer != '' else 'cluster'
+        summarizer = summarizer.lower() if summarizer != '' else 'freq'
         cluster_dist = cluster_dist.lower() if cluster_dist != '' else 'cosine'
         summary_len = summary_len if summary_len < 1 else 8
 
