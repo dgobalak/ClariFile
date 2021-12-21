@@ -21,6 +21,8 @@ def settings():
     if request.method == 'POST':
         form = request.form
         for key, value in form.items():
+            if key == 'summary-length' and int(value) < 1:
+                value = 1
             session[key] = value
             
     lang = session['language'] if session.get('language') else "English"

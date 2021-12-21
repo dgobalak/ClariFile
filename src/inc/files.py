@@ -8,17 +8,14 @@ from .wiki_summarizer import WikiSummarizer
 import os
 
 
-def get_summary_data(app, cookies) -> dict:
+def get_summary_data(app, session) -> dict:
     fname = ''
     data = {}
 
-    try:
-        fname = save_file(app)
-        data = process_file(app, fname, cookies)
-    except Exception as e:
-        print(e)
-    finally:
-        delete_file(app, fname)
+    fname = save_file(app)
+    data = process_file(app, fname, session)
+
+    delete_file(app, fname)
 
     return data
 
@@ -48,7 +45,7 @@ def process_file(app, fname, session) -> dict:
         lang = lang.lower() if lang != '' else 'english'
         summarizer = summarizer.lower() if summarizer != '' else 'freq'
         cluster_dist = cluster_dist.lower() if cluster_dist != '' else 'cosine'
-        summary_len = summary_len if summary_len < 1 else 8
+        summary_len = summary_len if summary_len > 0 else 8
 
         # Parse text from media file
         parser = Parser(os.path.join(app.config['UPLOAD_FOLDER'], fname))
@@ -60,7 +57,7 @@ def process_file(app, fname, session) -> dict:
 
         # Scrape wikipedia summary for each keyword
         wiki_summarizer = WikiSummarizer(keywords=keywords, lang="english", summarizer=summarizer,
-                                         dist_metric=cluster_dist, n_clusters=summary_len, summary_len=summary_len)
+                                         dist_metric=cluster_dist, summary_len=summary_len, n_clusters=summary_len)
 
         # Dict containing keyword:summary pairs
         summaries = wiki_summarizer.get_summaries()
@@ -79,5 +76,4 @@ def delete_file(app, fname) -> None:
 # Check if file type is supported
 def allowed_file(filename, app) -> bool:
     return '.' in filename and \
-        filename[len(filename)-1-filename[::-1].index(".")
-                     :] in app.config['UPLOAD_EXTENSIONS']
+        filename[len(filename)-1-filename[::-1].index("."):] in app.config['UPLOAD_EXTENSIONS']
