@@ -169,7 +169,7 @@ Distributed under the Apache 2.0 License . See `LICENSE` for more information.
 ## Contact
 
 * Daniel Gobalakrishnan - dgobalak@uwaterloo.ca
-* Project Link: [https://github.com/dgobalak/File-Insights](https://github.com/dgobalak/File-Insights)
+* Project Link: [https://file-insights.herokuapp.com](https://file-insights.herokuapp.com)
 
 
 
