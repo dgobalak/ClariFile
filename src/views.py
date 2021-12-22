@@ -24,6 +24,8 @@ def settings():
             if key == 'summary-length' and int(value) < 1:
                 value = 1
             session[key] = value
+        
+        return redirect(url_for('index'))
             
     lang = session['language'] if session.get('language') else "English"
     summary_length = session['summary-length'] if session.get('summary-length') else 8
