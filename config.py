@@ -10,7 +10,7 @@ SECRET_KEY = os.urandom(24).hex()
 PERMANENT_SESSION_LIFETIME = datetime.timedelta(days=365)
 
 # File upload settings
-UPLOAD_EXTENSIONS = ['.wav', '.mp3', '.mp4', '.png', '.pdf']
+UPLOAD_EXTENSIONS = ['.wav', '.pdf']
 UPLOAD_FOLDER = "temp_storage/"
 
 if not os.path.isdir(UPLOAD_FOLDER):

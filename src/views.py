@@ -1,12 +1,15 @@
 from src import app
 import os
 from flask import render_template, redirect, url_for, flash, request, session
-from .inc.files import get_summary_data
+from .inc.files import allowed_file, get_summary_data
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        if not allowed_file(request.files['file'].filename, app):
+            return redirect(url_for("index"))
+        
         data = get_summary_data(app, session)
         if data != {}:  # File saved successfully
             return render_template("summaries.html", data=data)        
