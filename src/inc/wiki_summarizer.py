@@ -58,18 +58,31 @@ class WikiSummarizer():
 
         return text
 
-    def _get_summarizer(self, text):
-        if self.summarizer == "cluster":
+    def _get_summarizer(self, text, failed=False):
+        summarizer = self.summarizer
+        
+        if failed:
+            if self.summarizer == "cluster":
+                summarizer = "freq"
+            else:
+                summarizer = "cluster"
+                        
+        if summarizer == "cluster":
             return ClusterSummary(text, self.dist_metric, self.n_clusters, self.lang)
-        elif self.summarizer == "freq":
+        elif summarizer == "freq":
             return MostFrequentSummary(text, self.max_sent_len, self.summary_len, self.lang)
 
     def _create_summaries(self):
         articles = self.get_articles()
         for kw in self.keywords:
             summarizer = self._get_summarizer(articles[kw])
-            summary = summarizer.get_summary()
             
+            try:
+                summary = summarizer.get_summary()
+            except:
+                summarizer = self._get_summarizer(articles[kw], True)
+                summary = summarizer.get_summary()
+
             # Translate text if a target lang is specified
             if self.target:
                 summary = Translator(summary, self.target).translate()

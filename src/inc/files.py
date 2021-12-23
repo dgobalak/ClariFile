@@ -12,10 +12,11 @@ def get_summary_data(app, session) -> dict:
     fname = ''
     data = {}
 
-    fname = save_file(app)
-    data = process_file(app, fname, session)
-
-    delete_file(app, fname)
+    try:
+        fname = save_file(app)
+        data = process_file(app, fname, session)
+    finally:
+        delete_file(app, fname)
 
     return data
 
