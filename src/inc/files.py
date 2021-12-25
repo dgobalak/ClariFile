@@ -16,8 +16,8 @@ def get_summary_data(app, session) -> dict:
     try:
         fname = save_file(app)
         data = process_file(app, fname, session)
-    except Exception:
-        pass
+    except Exception as e:
+        flash(str(e))
     finally:
         delete_file(app, fname)
 
@@ -75,7 +75,7 @@ def process_file(app, fname, session) -> dict:
 
 def delete_file(app, fname) -> None:
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], fname)
-    if os.path.exists(file_path):
+    if '.' in fname and os.path.exists(file_path):
         os.remove(file_path)
 
 

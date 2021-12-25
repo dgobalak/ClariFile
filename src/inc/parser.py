@@ -11,7 +11,7 @@ class Parser:
         self.prepped_text = self._prep_text()
 
     def get_text(self):
-        return self.prepped_text if self.prepped_text else self._prep_text(self.text)
+        return self.prepped_text if self.prepped_text else self._prep_text()
 
     def get_ftype(self):
         _, fext = os.path.splitext(self.path)
@@ -28,7 +28,6 @@ class Parser:
         text_prepped = text_prepped.replace("\\n", " ")
         text_prepped = text_prepped.replace("\\x0c", " ")
         text_prepped = ' '.join(text_prepped.split()).strip()
-        print(text_prepped)
         return text_prepped
 
     def _parse_text(self):
@@ -46,7 +45,5 @@ class Parser:
             self.path = new_path
 
         text = ''
-        print(self.path)
         text = str(textract.process(self.path))
-        print(text)
         return text

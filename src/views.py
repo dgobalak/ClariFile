@@ -8,6 +8,7 @@ from .inc.files import allowed_file, get_summary_data
 def index():
     if request.method == 'POST':
         if not allowed_file(request.files['file'].filename, app):
+            flash("File type not supported.")
             return redirect(url_for("index"))
         
         data = get_summary_data(app, session)
