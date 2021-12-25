@@ -23,7 +23,7 @@
         <div class="file-upload-placeholder">
             <input class="file-upload-input" type='file' name='file' onchange="readURL(this);" />
             <div class="drag-text">
-                <h3>Drag and drop a PDF or select add File</h3>
+                <h3>Drag and drop a file or select add File</h3>
             </div>
         </div>
 
@@ -43,19 +43,20 @@
         <div class="col-lg-4">
             <img class="mb-1" src="../static/img/text_extraction.png" alt="Text Extraction" width="140" height="140">
             <h2>Text Extraction</h2>
-            <p>We extract and clean the text content of a media file using 3rd party libraries. Only PDFs are currently supported, but others are in development.</p>
+            <p>We extract and clean the text content of a media file using 3rd party libraries. We support the following extensions: '.wav', '.mp3', '.mp4', '.mov',
+                     '.pdf', '.jpg', '.png', '.txt', '.jpeg', '.html'</p>
             <p><a class="btn btn-primary" href="https://github.com/dgobalak/File-Insights/blob/main/src/inc/parser.py" target="_blank">View Code &raquo;</a></p>
         </div>
         <div class="col-lg-4">
             <img class="mb-1" src="../static/img/keyword_identification.png" alt="Text Extraction" width="140" height="140">
             <h2>Keyword Identification</h2>
-            <p>We identify named entities from the text using natural language processing. This is done with a chunking process that identifies parts of speech</p>
+            <p>We identify named entities from the text using natural language processing. This is done with a chunking process using the NLTK library that identifies parts of speech.</p>
             <p><a class="btn btn-primary" href="https://github.com/dgobalak/File-Insights/blob/main/src/inc/topic_selector.py" target="_blank">View Code &raquo;</a></p>
         </div>
         <div class="col-lg-4">
             <img class="mb-1" src="../static/img/wikipedia.png" alt="Text Extraction" width="140" height="140">
             <h2>Wiki Summarization</h2>
-            <p>We scrape Wikipedia articles using a custom web scraper. The articles are then summarized using an unsupervised learning algorithm (K-Means Clustering).</p>
+            <p>We scrape Wikipedia articles using a custom web scraper. The articles are then summarized using either unsupervised learning (K-Means Clustering) or the TF-IDF algorithm.</p>
             <p><a class="btn btn-primary" href="https://github.com/dgobalak/File-Insights/blob/main/src/inc/wiki_summarizer.py" target="_blank">View Code &raquo;</a></p>
         </div>
     </div>

@@ -31,7 +31,7 @@ def settings():
         return redirect(url_for('index'))
             
     lang = session['language'] if session.get('language') else "English"
-    summary_length = session['summary-length'] if session.get('summary-length') else 8
+    summary_length = int(session['summary-length']) if session.get('summary-length') else 8
     cluster_distance = session['cluster-distance'] if session.get('cluster-distance') else "cosine"
     summarizer = session['summarizer'] if session.get('summarizer') else "freq"
     

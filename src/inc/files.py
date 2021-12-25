@@ -32,7 +32,6 @@ def save_file(app) -> str:
         uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         return filename
 
-    print("File type not supported.")
     return ''
 
 
@@ -56,13 +55,16 @@ def process_file(app, fname, session) -> dict:
         topic_selector = TopicSelector(text=parsed_text, lang="english")
         keywords = topic_selector.get_keywords()
 
+        if len(keywords) == 0:
+            raise("No keywords found")
+        
         # Scrape wikipedia summary for each keyword
         wiki_summarizer = WikiSummarizer(keywords=keywords, lang="english", summarizer=summarizer,
                                          dist_metric=cluster_dist, summary_len=summary_len, n_clusters=summary_len)
 
         # Dict containing keyword:summary pairs
         summaries = wiki_summarizer.get_summaries()
-
+        
         return summaries
 
     return {}
