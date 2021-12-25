@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 from .parser import Parser
 from .topic_selector import TopicSelector
 from .wiki_summarizer import WikiSummarizer
+from .exceptions import NoKeywordsFoundException
 
 import os
 
@@ -15,6 +16,8 @@ def get_summary_data(app, session) -> dict:
     try:
         fname = save_file(app)
         data = process_file(app, fname, session)
+    except Exception:
+        pass
     finally:
         delete_file(app, fname)
 
@@ -56,7 +59,7 @@ def process_file(app, fname, session) -> dict:
         keywords = topic_selector.get_keywords()
 
         if len(keywords) == 0:
-            raise("No keywords found")
+            raise NoKeywordsFoundException("No keywords found in file")
         
         # Scrape wikipedia summary for each keyword
         wiki_summarizer = WikiSummarizer(keywords=keywords, lang="english", summarizer=summarizer,

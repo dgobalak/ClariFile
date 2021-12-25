@@ -1,7 +1,7 @@
 import os
 import textract
 import moviepy.editor as mpe
-
+from .exceptions import UnsupportedFileTypeException
 
 class Parser:
     def __init__(self, path):
@@ -17,7 +17,7 @@ class Parser:
         _, fext = os.path.splitext(self.path)
         ftypes = self.get_supported_ftypes()
         if fext not in ftypes:
-            raise KeyError("Unsupported file type")
+            raise UnsupportedFileTypeException("Unsupported file type")
         return fext
 
     def get_supported_ftypes(self):
