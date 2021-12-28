@@ -6,6 +6,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = False
 
+PREFERRED_URL_SCHEME = 'https'
+
 SECRET_KEY = os.urandom(24).hex()
 PERMANENT_SESSION_LIFETIME = datetime.timedelta(days=365)
 
