@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="language">Language</label>
-                <input type="text" class="form-control" name="language" id="language" placeholder="{{  language  }}" value="{{  language  }}" required readonly>
+                <input type="text" class="form-control" name="language" id="language" placeholder="Enter Language" value="{{  language  }}" required readonly>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="summarizer">Summarizer</label>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="summary-length">Summary Length (# of sentences)</label>
-                <input type="number" class="form-control" name="summary-length" id="summary-length" placeholder="{{  summary_length  }}" value="{{  summary_length  }}" required>
+                <input type="number" class="form-control" name="summary-length" id="summary-length" placeholder="Enter number of sentences" value="{{  summary_length  }}" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
             </div>
         </div>
         <hr class="mb-4">
