@@ -6,11 +6,13 @@ backcall==0.2.0
 backports.zoneinfo==0.2.1
 beautifulsoup4==4.8.2
 certifi==2021.10.8
+cffi==1.15.0
 chardet==3.0.4
 charset-normalizer==2.0.7
 click==8.0.3
 colorama==0.4.4
 compressed-rtf==1.0.6
+cryptography==36.0.1
 Cython==0.29.23
 debugpy==1.5.1
 decorator==4.4.2
@@ -20,6 +22,7 @@ EbookLib==0.17.1
 entrypoints==0.3
 extract-msg==0.28.7
 Flask==2.0.2
+flask-talisman==0.8.1
 gensim==4.1.2
 googletrans==4.0.0rc1
 h11==0.9.0
@@ -61,6 +64,7 @@ proglog==0.1.9
 prompt-toolkit==3.0.22
 py==1.11.0
 pycodestyle==2.8.0
+pycparser==2.21
 pycryptodome==3.11.0
 Pygments==2.10.0
 pyparsing==3.0.6
