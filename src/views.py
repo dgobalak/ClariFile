@@ -25,11 +25,11 @@ def settings():
     if request.method == 'POST':
         form = request.form
         for key, value in form.items():
-            if key == 'summary-length' and int(value) < 1:
-                value = 1
+            if key == 'summary-length' and (value == '' or int(value) < 1):
+                value = 8
             session[key] = value
         
-        return redirect(url_for('index'))
+        return redirect(url_for('settings'))
             
     lang = session['language'] if session.get('language') else "English"
     summary_length = int(session['summary-length']) if session.get('summary-length') else 8
