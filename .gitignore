@@ -133,9 +133,8 @@ dmypy.json
 samples/
 notebooks/
 temp_storage/
+models/
 
 data/Image Captioning/
 data/nltk_data/
 data/Translation/clean-language-codes.csv
-
-notebooks/
