@@ -25,6 +25,7 @@ function removeUpload() {
 $('.file-upload-placeholder').bind('dragover', function() {
     $('.file-upload-placeholder').addClass('image-dropping');
 });
+
 $('.file-upload-placeholder').bind('dragleave', function() {
     $('.file-upload-placeholder').removeClass('image-dropping');
 });

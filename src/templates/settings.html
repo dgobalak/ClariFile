@@ -1,0 +1,47 @@
+{% extends "layout.html" %} {% block content %}
+<!--  n_clusters=3, max_sent_len=30, summary_len=5, lang='auto', min_summary_char_len=100, target='french' -->
+
+<div class="container col-md-11 order-md-1">
+    <div class="px-4 my-3 text-center">
+        <img class="d-block mx-auto mb-2" src="../static/img/logo.png" alt="" width="100" height="100">
+        <h1 class="display-5 fw-bold">File Insights</h1>
+        <div class="col-lg-10 mx-auto">
+            <p class="lead mb-4">
+                Adjust the application settings below
+            </p>
+        </div>
+    </div>
+    <form method="POST" novalidate>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="language">Language</label>
+                <input type="text" class="form-control" name="language" id="language" placeholder="Enter Language" value="{{  language  }}" required readonly>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="summarizer">Summarizer</label>
+                <select class="form-select d-block w-100" id="summarizer" name="summarizer">
+                    <option value="cluster" {% if summarizer == "cluster" %} SELECTED {% endif %}}>Clustering</option>
+                    <option value="freq" {% if summarizer == "freq" %} SELECTED {% endif %}}>TF-IDF</option>
+                    <option value="default" disabled>First Paragraph</option>
+                  </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="cluster-distance">Clustering Distance Metric</label>
+                <select class="form-select d-block w-100" id="cluster-distance" name="cluster-distance">
+                    <option value="cosine" {% if cluster_distance == "cosine" %} SELECTED {% endif %}}>Cosine</option>
+                    <option value="euclidean" {% if cluster_distance == "euclidean" %} SELECTED {% endif %}}>Euclidean</option>
+                  </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="summary-length">Summary Length (# of sentences)</label>
+                <input type="number" class="form-control" name="summary-length" id="summary-length" placeholder="Enter number of sentences" value="{{  summary_length  }}" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+            </div>
+        </div>
+        <hr class="mb-4">
+        <button class="settings-submit-btn" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

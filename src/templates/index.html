@@ -1,20 +1,27 @@
-<!doctype html>
-<html>
+{% extends "layout.html" %} {% block content %}
 
-<head>
-    <title>DocSurfer</title>
-    <link rel="icon" type="image/png" href="static/img/logo.png" sizes="128x128" />
-    <link rel="stylesheet" href="static/styles/main.css" type="text/css">
-</head>
+<div class="px-4 my-3 text-center">
+    <img class="d-block mx-auto mb-2" src="../static/img/logo.png" alt="" width="100" height="100">
+    <h1 class="display-5 fw-bold">File Insights</h1>
+    <div class="col-lg-10 mx-auto">
+        <p class="lead mb-4">
+            An open source web application that provides insight into media content
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <p><a class="btn btn-outline-primary btn-lg px-4 gap-3" href="https://github.com/dgobalak/File-Insights" target="_blank">View Code &raquo;</a></p>
+            <p><a class="btn btn-outline-dark btn-lg px-4" href="https://github.com/dgobalak/File-Insights/issues" target="_blank">Report Issue &raquo;</a></p>
+        </div>
+    </div>
+</div>
 
-<body>
-    <div class="file-upload">
-        <img src="static/img/logo.png" style="display:block; margin: 0 auto; padding-bottom: 10px;"></img>
-        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add
-            File</button>
+<div class="file-upload">
+    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
+            Add File
+        </button>
 
+    <form method="post" enctype="multipart/form-data">
         <div class="file-upload-placeholder">
-            <input class="file-upload-input" type='file' onchange="readURL(this);" />
+            <input class="file-upload-input" type='file' name='file' onchange="readURL(this);" />
             <div class="drag-text">
                 <h3>Drag and drop a file or select add File</h3>
             </div>
@@ -24,14 +31,35 @@
             <iframe class="file-upload-image" width="800px" height="400px" style="border: none;" src="#" alt="File"></iframe>
             <div class="file-upload-remove">
                 <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
-                        class="image-title">Uploaded File</span></button>
+                            class="image-title">Uploaded File</span></button>
+                <input type="submit" value="Upload" class="remove-image">
             </div>
         </div>
+    </form>
+</div>
 
+<div class="container algorithm-explanation">
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="mb-1" src="../static/img/text_extraction.png" alt="Text Extraction" width="140" height="140">
+            <h2>Text Extraction</h2>
+            <p>We extract and clean the text content of a media file using 3rd party libraries. We support the following extensions: '.wav', '.mp3', '.mp4', '.mov',
+                     '.pdf', '.jpg', '.png', '.txt', '.jpeg', '.html'</p>
+            <p><a class="btn btn-primary" href="https://github.com/dgobalak/File-Insights/blob/main/src/inc/parser.py" target="_blank">View Code &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+            <img class="mb-1" src="../static/img/keyword_identification.png" alt="Text Extraction" width="140" height="140">
+            <h2>Keyword Identification</h2>
+            <p>We identify named entities from the text using natural language processing. This is done with a chunking process using the NLTK library that identifies parts of speech.</p>
+            <p><a class="btn btn-primary" href="https://github.com/dgobalak/File-Insights/blob/main/src/inc/topic_selector.py" target="_blank">View Code &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+            <img class="mb-1" src="../static/img/wikipedia.png" alt="Text Extraction" width="140" height="140">
+            <h2>Wiki Summarization</h2>
+            <p>We scrape Wikipedia articles using a custom web scraper. The articles are then summarized using either unsupervised learning (K-Means Clustering) or the TF-IDF algorithm.</p>
+            <p><a class="btn btn-primary" href="https://github.com/dgobalak/File-Insights/blob/main/src/inc/wiki_summarizer.py" target="_blank">View Code &raquo;</a></p>
+        </div>
     </div>
+</div>
 
-    <script type="text/javascript" src="static/scripts/main.js"></script>
-    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-</body>
-
-</html>
+{% endblock %}

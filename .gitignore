@@ -128,9 +128,14 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+!notebooks/main_pipeline.ipynb
 
-samples/sample_vid.*
-datasets/Image Captioning/Images
-datasets/Image Captioning/*.txt
-datasets/Word Vectors
-Translation/
+samples/
+notebooks/
+temp_storage/
+
+data/Image Captioning/
+data/nltk_data/
+data/Translation/clean-language-codes.csv
+
+notebooks/

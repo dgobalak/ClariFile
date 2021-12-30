@@ -7,12 +7,10 @@ import re
 
 
 class ClusterSummary:
-    def __init__(self, text, min_word_freq=1, dist_metric="euclidean", n_clusters=8, lang="english"):
+    def __init__(self, text, dist_metric="euclidean", n_clusters=8, lang="english"):
         self.text = self._preprocessing(text)
-        self.min_word_freq = min_word_freq
         self.dist_metric = self._set_distance_metric(dist_metric)
 
-        # TODO: Deal with situation when n_clusters exceeds number of sentences
         self.n_clusters = n_clusters
         self.lang = lang
 
@@ -28,8 +26,7 @@ class ClusterSummary:
 
         w2v_model = self._get_w2v_model(all_words)
         sent_vector = self._vectorize_sentences(cleaned_sentences, w2v_model)
-
-        kclusterer = self._create_clusterer()
+        kclusterer = self._create_clusterer(len(sent_vector))
         clusters = self._get_sent_clusters(kclusterer, sent_vector)
         centroids = self._get_cluster_centroids(kclusterer)
         
@@ -82,22 +79,23 @@ class ClusterSummary:
         return [sentence.split() for sentence in sentences]
 
     def _get_w2v_model(self, all_words):
-        return Word2Vec(all_words, min_count=self.min_word_freq)
+        return Word2Vec(all_words, min_count=0)
 
     def _vectorize_sentences(self, cleaned_sentences, model):
         sent_vector=[]
-        for sentence in cleaned_sentences:
-            plus=0
-            for j in sentence.split():
-                plus += model.wv[j]
 
-            # TODO: Deal with situation when len(sentence.split()) == 0
-            plus = plus/len(sentence.split())
+        for sentence in cleaned_sentences:
+            plus = 0
+            for word in sentence.split():
+                 plus += model.wv[word]
+            plus = plus/len(sentence.split()) if len(sentence.split()) > 0 else plus
             sent_vector.append(plus)
             
         return sent_vector
 
-    def _create_clusterer(self):
+    def _create_clusterer(self, num_sentences):
+        # Limit n_clusters so it doesn't exceed the number of sentences in the text
+        self.n_clusters = self.n_clusters if self.n_clusters <= num_sentences else num_sentences
         return KMeansClusterer(num_means=self.n_clusters, distance=self.dist_metric)
 
     def _get_sent_clusters(self, kclusterer, sentence_vectors):

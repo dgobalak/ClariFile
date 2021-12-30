@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    {% for keyword, summary in data.items() %}
+    <div class="container mt-3 card summary-card">
+        <div class="card-body">
+            <h4 class="card-title">Keyword: {{keyword}}</h4>
+            <p class="card-text"><strong>Summary:</strong> {{summary}}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}

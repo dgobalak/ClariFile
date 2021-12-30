@@ -1,4 +1,4 @@
-# DocSurfer
+# File Insights
 
 <!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -10,43 +10,47 @@
 
 <!-- PROJECT LOGO -->
 <p align="center">
-  <a href="https://github.com/dgobalak/DocSurfer">
+  <a href="https://github.com/dgobalak/File-Insights">
     <img src="src/static/img/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">DocSurfer</h3>
+  <h3 align="center">File Insights</h3>
 
   <p align="center">
-    Extend your knowledge about a piece of media.
+    Built to provide insight into media content.
     <br />
-    <a href="https://github.com/dgobalak/DocSurfer"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/dgobalak/File-Insights"><strong>Explore the docs »</strong></a>
     <br>
     <!-- <a href="https://github.com/github_username/repo_name">View Demo</a>
     · -->
-    <a href="https://github.com/dgobalak/DocSurfer/issues">Report Bug</a>
+    <a href="https://github.com/dgobalak/File-Insights/issues">Report Bug</a>
     ·
-    <a href="https://github.com/dgobalak/DocSurfer/issues">Request Feature</a>
-  </p>
+    <a href="https://github.com/dgobalak/File-Insights/issues">Request Feature</a>
+</p>
 </p>
 
 
 
 <!-- TABLE OF CONTENTS -->
-<summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+<summary>
+<h2 style="display: inline-block">Table of Contents</h2></summary>
+
 <ol>
 <li>
     <a href="#about-the-project">About The Project</a>
     <ul>
+	<li><a href="#overview">Overview</a></li>
     <li><a href="#built-with">Built With</a></li>
-    </ul>
+</ul>
 </li>
 <li>
     <a href="#getting-started">Getting Started</a>
     <ul>
     <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#installation">Installation</a></li>
+    <li><a href="#installation-and-setup">Installation</a></li>
     </ul>
 </li>
+<li><a href="#contributing">Contributing</a></li>
 <li><a href="#license">License</a></li>
 <li><a href="#contact">Contact</a></li>
 <li><a href="#acknowledgements">Acknowledgements</a></li>
@@ -59,6 +63,17 @@
 <!-- 
 [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
+### Overview
+
+File Insights is a tool that takes a media file (.wav, .mp3, .mp4, .pdf, or .png) and provides further information regarding the file's content. We use machine learning, natural language processing, and web-scraping to provide succinct, translated summaries of Wikipedia articles relevant to the file. We've implemented NLP algorithms to extract named entitites and summarize text, so users can quickly learn more about major topics. We use an image captioning ML model to caption images that don't have any text and we use
+the textract library for every other file type. All of these features (and more!) are integrated into an easy-to-use Flask website.
+<br>
+<br>
+
+<p align="center">
+   <img src="./src/static/img/flowchart.png" alt="Algorithm Flowchart">
+</p>
+
 ### Built With
 
 * Python
@@ -66,7 +81,6 @@
 * NLTK
 * Beautiful Soup
 * Flask
-* Jupyter Notebook
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -80,18 +94,18 @@ To get a local copy up and running, follow these simple steps.
   python --version
   ```
   * If not, go to https://www.python.org/downloads.
-<br><br>
+  <br><br>
 
 * Verify if pip is installed
   ```sh
   pip --version
-  ```  
+  ```
 
 ### Installation and Setup
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/dgobalak/DocSurfer.git
+   git clone https://github.com/dgobalak/File-Insights.git
    ```
 2. Create a virtual environment
    ```sh
@@ -128,17 +142,24 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 
 
 <!-- CONTRIBUTING -->
-<!-- ## Contributing
+## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
- -->
-
+2. Create your Feature Branch 
+```sh
+   git checkout -b AmazingFeature
+```
+3. Commit your Changes 
+```sh
+   git commit -m 'Add some AmazingFeature'
+```
+4. Push to the Branch 
+```sh
+   git push origin AmazingFeature
+```
+5. Open a Pull Request and wait for it to be reviewed.
 
 ## License
 
@@ -148,7 +169,7 @@ Distributed under the Apache 2.0 License . See `LICENSE` for more information.
 ## Contact
 
 * Daniel Gobalakrishnan - dgobalak@uwaterloo.ca
-* Project Link: [https://github.com/dgobalak/DocSurfer](https://github.com/dgobalak/DocSurfer)
+* Project Link: [https://file-insights.herokuapp.com](https://file-insights.herokuapp.com)
 
 
 

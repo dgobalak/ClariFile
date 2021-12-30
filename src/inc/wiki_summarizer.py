@@ -1,18 +1,20 @@
 from src.inc.freq_summary import MostFrequentSummary
 from src.inc.cluster_summary import ClusterSummary
+from src.inc.lang_detection_utils import *
+from src.inc.translator import Translator
 from urllib.error import HTTPError
 import urllib.request
 import bs4 as bs
 
 
 class WikiSummarizer():
-    def __init__(self, keywords, summarizer="freq", min_word_freq=1, dist_metric="cosine", n_clusters=8, max_sent_len=30, summary_len=8, lang='english', min_summary_char_len=100):
+    def __init__(self, keywords, summarizer="freq", dist_metric="cosine", n_clusters=8, max_sent_len=30, summary_len=8, lang='auto', min_summary_char_len=100, target=None):
         self.keywords = keywords
-        self.lang = lang
+        self.lang = detect_lang(" ".join(keywords)) if lang == 'auto' else lang
         self.summarizer = summarizer
+        self.target = target
 
         # Cluster summary config
-        self.min_word_freq = min_word_freq
         self.dist_metric = dist_metric
         self.n_clusters = n_clusters
 
@@ -32,17 +34,21 @@ class WikiSummarizer():
 
     def _collect_articles(self, keywords):
         articles = {}
+        new_keywords = []
         for kw in keywords:
             try:
                 articles[kw] = self._scrape_text(kw)
+                new_keywords.append(kw)
             except HTTPError:
                 continue
         self.articles = articles
+        self.keywords = new_keywords
         return articles
 
     def _scrape_text(self, keyword):
+        kw = "_".join(keyword.split())
         article = urllib.request.urlopen(
-            f'https://en.wikipedia.org/wiki/{keyword}').read()
+            f'https://en.wikipedia.org/wiki/{kw}').read()
         parsed_article = bs.BeautifulSoup(article, 'lxml')
         paragraphs = parsed_article.find_all('p')
 
@@ -52,17 +58,36 @@ class WikiSummarizer():
 
         return text
 
-    def _get_summarizer(self, text):
-        if self.summarizer == "cluster":
-            return ClusterSummary(text, self.min_word_freq, self.dist_metric, self.n_clusters, self.lang)
-        elif self.summarizer == "freq":
+    def _get_summarizer(self, text, failed=False):
+        summarizer = self.summarizer
+        
+        if failed:
+            if self.summarizer == "cluster":
+                summarizer = "freq"
+            else:
+                summarizer = "cluster"
+                        
+        if summarizer == "cluster":
+            return ClusterSummary(text, self.dist_metric, self.n_clusters, self.lang)
+        elif summarizer == "freq":
             return MostFrequentSummary(text, self.max_sent_len, self.summary_len, self.lang)
 
     def _create_summaries(self):
         articles = self.get_articles()
         for kw in self.keywords:
             summarizer = self._get_summarizer(articles[kw])
-            self.summaries[kw] = summarizer.get_summary()
+            
+            try:
+                summary = summarizer.get_summary()
+            except:
+                summarizer = self._get_summarizer(articles[kw], True)
+                summary = summarizer.get_summary()
+
+            # Translate text if a target lang is specified
+            if self.target:
+                summary = Translator(summary, self.target).translate()
+            self.summaries[kw] = summary
+
         summaries = {keyword: summary for keyword, summary in self.summaries.items(
         ) if len(summary) >= self.min_summary_char_len}
         self.summaries = summaries

@@ -5,8 +5,7 @@ body {
 
 .file-upload {
     background-color: #ffffff;
-    width: 1000px;
-    /* height: 2000px; */
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
 }
@@ -88,8 +87,8 @@ body {
 /* PREVIEW */
 
 .file-upload-image {
-    max-height: 1200px;
-    max-width: 1200px;
+    max-height: 100%;
+    max-width: 100%;
     margin: auto;
     padding: 20px;
 }
@@ -125,6 +124,91 @@ body {
 }
 
 .remove-image:active {
+    border: 0;
+    transition: all .2s ease;
+}
+
+.submit-image {
+    width: 200px;
+    margin: 0;
+    color: #fff;
+    background: #382c52;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    /* border-bottom: 4px solid #b02818; */
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.submit-image:hover {
+    background: #2a213d;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.submit-image:active {
+    border: 0;
+    transition: all .2s ease;
+}
+
+
+/* Summary page */
+
+.summary-card {
+    background-color: #ffffff;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+/* Home page algorithm explanation */
+
+.algorithm-explanation .col-lg-4 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.algorithm-explanation h2 {
+    font-weight: 400;
+}
+
+.algorithm-explanation .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+}
+
+
+/* Settings page */
+
+.settings-submit-btn {
+    width: 100%;
+    margin: 0;
+    color: #fff;
+    background: #1a96dd;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    /* border-bottom: 4px solid rgb(0, 248, 227); */
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.settings-submit-btn:hover {
+    background: #116697;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+.settings-submit-btn:active {
     border: 0;
     transition: all .2s ease;
 }
