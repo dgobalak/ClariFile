@@ -135,5 +135,6 @@ notebooks/
 temp_storage/
 
 data/Image Captioning/
+data/Captioning/
 data/nltk_data/
 data/Translation/clean-language-codes.csv

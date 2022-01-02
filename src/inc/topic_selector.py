@@ -82,7 +82,7 @@ class TopicSelector:
     # Will be used for definitions
     def _set_common_words(self):
         freq_dist = FreqDist(self._lemmatize_words(self.text))
-        self.common_words = [x[0] for x in freq_dist.most_common(self.n_common_words) if x[1] >= self.min_freq]
+        self.common_words = [x[0] for x in freq_dist.most_common(self.n_common_words) if x[1] >= self.min_freq and len(x[0]) > 1]
         return self.common_words
 
     # No longer used in keyword extraction
