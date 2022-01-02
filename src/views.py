@@ -10,10 +10,10 @@ def index():
         if not allowed_file(request.files['file'].filename, app):
             flash("File type not supported.")
             return redirect(url_for("index"))
-        
+
         data = get_summary_data(app, session)
         if data != {}:  # File saved successfully
-            return render_template("summaries.html", data=data)        
+            return render_template("summaries.html", data=data)
         else:
             return redirect(url_for("index"))
 
@@ -28,14 +28,16 @@ def settings():
             if key == 'summary-length' and (value == '' or int(value) < 1):
                 value = 8
             session[key] = value
-        
+
         return redirect(url_for('settings'))
-            
+
     lang = session['language'] if session.get('language') else "English"
-    summary_length = int(session['summary-length']) if session.get('summary-length') else 8
-    cluster_distance = session['cluster-distance'] if session.get('cluster-distance') else "cosine"
+    summary_length = int(session['summary-length']
+                         ) if session.get('summary-length') else 8
+    cluster_distance = session['cluster-distance'] if session.get(
+        'cluster-distance') else "cosine"
     summarizer = session['summarizer'] if session.get('summarizer') else "freq"
-    
+
     return render_template("settings.html", language=lang, summary_length=summary_length, cluster_distance=cluster_distance, summarizer=summarizer)
 
 

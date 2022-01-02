@@ -5,17 +5,17 @@ from googletrans import Translator as google_translator
 df = pd.read_csv("data/Translation/google-lang-codes.csv")
 
 
-def detect_lang(text):
+def detect_lang(text: str) -> str:
     return lang_code_to_name(google_translator().detect(text).lang)
 
 
 # Convert the 2 character language code to its full name
-def lang_code_to_name(code):
+def lang_code_to_name(code: str) -> str:
     name = df.loc[df['Code'] == code.lower(), 'Name'].iloc[0]
     return name
 
 
 # Convert a language's full name to its 2 character language code
-def lang_name_to_code(name):
+def lang_name_to_code(name: str) -> str:
     code = df.loc[df['Name'] == name.lower(), 'Code'].iloc[0]
     return code

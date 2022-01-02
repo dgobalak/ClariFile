@@ -3,12 +3,24 @@ from src.inc.cluster_summary import ClusterSummary
 from src.inc.lang_detection_utils import *
 from src.inc.translator import Translator
 from urllib.error import HTTPError
+from typing import Union
 import urllib.request
 import bs4 as bs
 
 
 class WikiSummarizer():
-    def __init__(self, keywords, summarizer="freq", dist_metric="cosine", n_clusters=8, max_sent_len=30, summary_len=8, lang='auto', min_summary_char_len=100, target=None):
+    def __init__(self,
+                 keywords: set,
+                 summarizer: str = "freq",
+                 dist_metric: str = "cosine",
+                 n_clusters: int = 8,
+                 max_sent_len: int = 30,
+                 summary_len: int = 8,
+                 lang: str = 'auto',
+                 min_summary_char_len: int = 100,
+                 target: Union[str, None] = None
+                 ) -> None:
+
         self.keywords = keywords
         self.lang = detect_lang(" ".join(keywords)) if lang == 'auto' else lang
         self.summarizer = summarizer
@@ -26,13 +38,13 @@ class WikiSummarizer():
         self.articles = {}
         self.summaries = {}
 
-    def get_summaries(self):
+    def get_summaries(self) -> dict:
         return self.summaries if self.summaries else self._create_summaries()
 
-    def get_articles(self):
+    def get_articles(self) -> dict:
         return self.articles if self.articles else self._collect_articles(self.keywords)
 
-    def _collect_articles(self, keywords):
+    def _collect_articles(self, keywords: set) -> dict:
         articles = {}
         new_keywords = []
         for kw in keywords:
@@ -45,7 +57,7 @@ class WikiSummarizer():
         self.keywords = new_keywords
         return articles
 
-    def _scrape_text(self, keyword):
+    def _scrape_text(self, keyword: str) -> str:
         kw = "_".join(keyword.split())
         article = urllib.request.urlopen(
             f'https://en.wikipedia.org/wiki/{kw}').read()
@@ -58,25 +70,25 @@ class WikiSummarizer():
 
         return text
 
-    def _get_summarizer(self, text, failed=False):
+    def _get_summarizer(self, text: str, failed: bool = False) -> Union[ClusterSummary, MostFrequentSummary]:
         summarizer = self.summarizer
-        
+
         if failed:
             if self.summarizer == "cluster":
                 summarizer = "freq"
             else:
                 summarizer = "cluster"
-                        
+
         if summarizer == "cluster":
             return ClusterSummary(text, self.dist_metric, self.n_clusters, self.lang)
         elif summarizer == "freq":
             return MostFrequentSummary(text, self.max_sent_len, self.summary_len, self.lang)
 
-    def _create_summaries(self):
+    def _create_summaries(self) -> dict:
         articles = self.get_articles()
         for kw in self.keywords:
             summarizer = self._get_summarizer(articles[kw])
-            
+
             try:
                 summary = summarizer.get_summary()
             except:
