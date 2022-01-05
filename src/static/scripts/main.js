@@ -21,6 +21,10 @@ function removeUpload() {
     $('.file-upload-preview').hide(); // hide preview
 }
 
+function showLoader() {
+    $('.page-load-spinner').show();
+}
+
 // Style when drag-over
 $('.file-upload-placeholder').bind('dragover', function() {
     $('.file-upload-placeholder').addClass('image-dropping');
