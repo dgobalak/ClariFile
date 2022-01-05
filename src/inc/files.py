@@ -1,16 +1,17 @@
-from flask import flash, request, sessions
-from flask.app import Flask
-from werkzeug.utils import secure_filename
+import os
+import sys
 from glob import glob
 
+import flask
+from flask import flash, request
+from flask.app import Flask
+from werkzeug.utils import secure_filename
+
+from .exceptions import NoKeywordsFoundException
 from .parser import Parser
 from .topic_selector import TopicSelector
 from .wiki_summarizer import WikiSummarizer
-from .exceptions import NoKeywordsFoundException
 
-import flask
-import os
-import sys
 
 def get_summary_data(app: Flask, session: flask.session) -> dict:
     fname = ''
@@ -23,6 +24,7 @@ def get_summary_data(app: Flask, session: flask.session) -> dict:
         flash("No keywords found in file.")
         print(str(e), file=sys.stderr)
     except Exception as e:
+        flash("Error occurred. Try again or use a different file.")
         print(str(e), file=sys.stderr)
     finally:
         delete_file(app, fname)
