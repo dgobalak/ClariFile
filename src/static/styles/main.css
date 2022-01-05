@@ -4,7 +4,7 @@ body {
 }
 
 .file-upload {
-    background-color: #ffffff;
+    background-color: #fff;
     width: 100%;
     margin: 0 auto;
     padding: 20px;
@@ -30,7 +30,7 @@ body {
 
 .file-upload-btn:hover {
     background: #116697;
-    color: #ffffff;
+    color: #fff;
     transition: all .2s ease;
     cursor: pointer;
 }
@@ -118,7 +118,7 @@ body {
 
 .remove-image:hover {
     background: #2a213d;
-    color: #ffffff;
+    color: #fff;
     transition: all .2s ease;
     cursor: pointer;
 }
@@ -145,7 +145,7 @@ body {
 
 .submit-image:hover {
     background: #2a213d;
-    color: #ffffff;
+    color: #fff;
     transition: all .2s ease;
     cursor: pointer;
 }
@@ -159,7 +159,7 @@ body {
 /* Summary page */
 
 .summary-card {
-    background-color: #ffffff;
+    background-color: #fff;
     width: 100%;
     margin: 0 auto;
     padding: 20px;
@@ -203,7 +203,7 @@ body {
 
 .settings-submit-btn:hover {
     background: #116697;
-    color: #ffffff;
+    color: #fff;
     transition: all .2s ease;
     cursor: pointer;
 }
