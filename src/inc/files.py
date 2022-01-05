@@ -23,6 +23,7 @@ def get_summary_data(app: Flask, session: flask.session) -> dict:
         flash("No keywords found in file.")
         print(str(e), file=sys.stderr)
     except Exception as e:
+        flash("Error occurred. Try again or use a different file.")
         print(str(e), file=sys.stderr)
     finally:
         delete_file(app, fname)
