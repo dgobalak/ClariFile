@@ -1,30 +1,38 @@
-from flask import flash, request, sessions
+import os
+import sys
+from glob import glob
+
+import flask
+from flask import flash, request
+from flask.app import Flask
 from werkzeug.utils import secure_filename
 
+from .exceptions import NoKeywordsFoundException
 from .parser import Parser
 from .topic_selector import TopicSelector
 from .wiki_summarizer import WikiSummarizer
-from .exceptions import NoKeywordsFoundException
-
-import os
 
 
-def get_summary_data(app, session) -> dict:
+def get_summary_data(app: Flask, session: flask.session) -> dict:
     fname = ''
     data = {}
 
     try:
         fname = save_file(app)
         data = process_file(app, fname, session)
+    except NoKeywordsFoundException as e:
+        flash("No keywords found in file.")
+        print(str(e), file=sys.stderr)
     except Exception as e:
-        flash(str(e))
+        flash("Error occurred. Try again or use a different file.")
+        print(str(e), file=sys.stderr)
     finally:
         delete_file(app, fname)
 
     return data
 
 
-def save_file(app) -> str:
+def save_file(app: Flask) -> str:
     uploaded_file = request.files['file']
     if uploaded_file.filename == '':
         flash('No selected file')
@@ -38,7 +46,7 @@ def save_file(app) -> str:
     return ''
 
 
-def process_file(app, fname, session) -> dict:
+def process_file(app: Flask, fname: str, session: flask.session) -> dict:
     if fname != '':
         lang = session.get('language', '')
         summarizer = session.get('summarizer', '')
@@ -60,26 +68,32 @@ def process_file(app, fname, session) -> dict:
 
         if len(keywords) == 0:
             raise NoKeywordsFoundException("No keywords found in file")
-        
+
         # Scrape wikipedia summary for each keyword
         wiki_summarizer = WikiSummarizer(keywords=keywords, lang="english", summarizer=summarizer,
                                          dist_metric=cluster_dist, summary_len=summary_len, n_clusters=summary_len)
 
         # Dict containing keyword:summary pairs
         summaries = wiki_summarizer.get_summaries()
-        
+
         return summaries
 
     return {}
 
 
-def delete_file(app, fname) -> None:
+def delete_file(app: Flask, fname: str) -> None:
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], fname)
-    if '.' in fname and os.path.exists(file_path):
-        os.remove(file_path)
+    
+    froot, _ = os.path.splitext(file_path)
+
+    file_list = glob(froot + '.*')
+    
+    for file in file_list:
+        if os.path.exists(file):
+            os.remove(file)
 
 
 # Check if file type is supported
-def allowed_file(filename, app) -> bool:
+def allowed_file(filename: str, app: Flask) -> bool:
     return '.' in filename and \
         filename[len(filename)-1-filename[::-1].index("."):] in app.config['UPLOAD_EXTENSIONS']

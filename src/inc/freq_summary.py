@@ -5,7 +5,7 @@ import heapq
 
 
 class MostFrequentSummary:
-    def __init__(self, text, max_sent_len=30, summary_len=8, lang="english"):
+    def __init__(self, text: str, max_sent_len: int = 30, summary_len: int = 8, lang: str = "english") -> None:
         self.text = self._preprocess(text)
         self.max_sent_len = max_sent_len
         self.summary_len = summary_len
@@ -14,39 +14,41 @@ class MostFrequentSummary:
         self.formatted_text = self._format_text(self.text)
         self.summary = None
 
-    def get_summary(self):
+    def get_summary(self) -> str:
         return self.summary if self.summary else self._summarize()
 
-    def _summarize(self):
+    def _summarize(self) -> str:
         word_freqs = self._calculate_word_freqs(self.formatted_text)
         sent_freqs = self._calculate_sent_freqs(self.text, word_freqs)
-        summary_sentences = heapq.nlargest(self.summary_len, sent_freqs, key=sent_freqs.get)
+        summary_sentences = heapq.nlargest(
+            self.summary_len, sent_freqs, key=sent_freqs.get)
         self.summary = ' '.join(summary_sentences)
         return self.summary
 
-    def _preprocess(self, t):
+    def _preprocess(self, t: str) -> str:
         text = re.sub(r'\[[0-9]*\]', ' ', t)
         text = re.sub(r'\s+', ' ', text)
         return text
 
-    def _format_text(self, t):
+    def _format_text(self, t: str) -> str:
         formatted_text = re.sub('[^a-zA-Z]', ' ', t)
         formatted_text = re.sub(r'\s+', ' ', formatted_text)
         return formatted_text
-    
-    def _tokenize_sentences(self, text):
+
+    def _tokenize_sentences(self, text: str) -> list:
         return sent_tokenize(text)
 
-    def _get_stopwords(self):
+    def _get_stopwords(self) -> set:
         return set(stopwords.words("english"))
 
-    def _filter_stopwords(self, text):
+    def _filter_stopwords(self, text: str) -> list:
         words = word_tokenize(text, language=self.lang)
         stopwords = self._get_stopwords()
-        filtered_words = [word for word in words if word.casefold() not in stopwords]
+        filtered_words = [
+            word for word in words if word.casefold() not in stopwords]
         return filtered_words
 
-    def _calculate_word_freqs(self, f_text):
+    def _calculate_word_freqs(self, f_text: str) -> dict:
         word_freqs = {}
         for word in self._filter_stopwords(f_text):
             if word not in word_freqs.keys():
@@ -57,15 +59,15 @@ class MostFrequentSummary:
         word_freqs = self._normalize_freqs(word_freqs)
         return word_freqs
 
-    def _normalize_freqs(self, word_freqs):
+    def _normalize_freqs(self, word_freqs: dict) -> dict:
         max_freq = max(word_freqs.values())
         for word in word_freqs.keys():
             word_freqs[word] = (word_freqs[word]/max_freq)
         return word_freqs
 
-    def _calculate_sent_freqs(self, text, word_freqs):        
+    def _calculate_sent_freqs(self, text: str, word_freqs: dict) -> dict:
         sentence_scores = {}
-        for sentence in self._tokenize_sentences(self.text):
+        for sentence in self._tokenize_sentences(text):
             for word in word_tokenize(sentence.lower()):
                 if word in word_freqs.keys():
                     if len(sentence.split(' ')) < self.max_sent_len:
